@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use Yandex\Geocode\YandexGeocodeServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', [MainController::class, 'index'])->name('home_page');
+Route::get('/personal_cabinet', [MainController::class, 'index'])->name('personal_cabinet_page');
+
+//Route::get('/test', function (\Illuminate\Http\Request $request) {
+//    $data = Yandex\Geocode\Facades\YandexGeocodeFacade::setQuery('Минск, Жудро')->load();
+//    $data = $data->getResponse()->getType();
+//    dd($data);
+//});

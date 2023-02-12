@@ -1,0 +1,13 @@
+Изменил в RouteServiceProvider
+
+     */
+    public const HOME = '/home';
+
+    /**
+
+    на
+
+         */
+      !!!!!!  public const HOME = '/';!!!!!!!!!!!!
+
+        /**

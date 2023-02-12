@@ -41,11 +41,6 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-$app->singleton(
-    Yandex\Geocode\YandexGeocodeServiceProvider::class,
-
-);
-
 
 
 /*

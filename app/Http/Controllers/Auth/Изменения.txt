@@ -1,0 +1,7 @@
+Изменил
+
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    на
+
+        protected $redirectTo = PersonalController::index;

@@ -75,7 +75,6 @@
                     <td>{{$post->updated_at}}</td>
                     <td>
                         <a class="btn btn-info" href="{{ route('posts.edit', compact('post')) }}">
-{{--                        <a class="btn btn-info" href="{{ route('posts.edit', $post->title) }}">--}}
                             <button class="btn btn-info">EDIT</button>
                         </a>
                         <form action="{{ route('posts.destroy', compact('post')) }}" method="post">

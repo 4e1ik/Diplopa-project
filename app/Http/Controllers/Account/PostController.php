@@ -40,19 +40,21 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $data = $request->all();
+//        dd($data);
         $data['user_id'] = Auth::id();
         $data['post_rate'] = 1;
 
 //        $address = 'Minsk, Zhodro 22';
         $post = Post::create($data);
         $data['post_id'] = $post->id;
-        if ($request->hasFile('image')){
-            foreach ($request->file('image') as $file){
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $file) {
                 $name = $file->getClientOriginalName();
                 $data['image'] = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+//                dd($data);
                 Image::create($data);
             }
         }
@@ -79,7 +81,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('diploma.posts.edit', compact('post'));
+//        dd($image);
+        $images = Image::where('post_id', $post->id)->get();
+        return view('diploma.posts.edit', compact('post', 'images'));
     }
 
     /**
@@ -89,12 +93,22 @@ class PostController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post, Image $image)
+    public function update(PostRequest $request, Post $post)
     {
-        $image->post_id = $post->id;
-        $image->fill($request->all())->save();
-//        dd($image);
-        $post->fill($request->all())->save();
+
+        $data = $request->all();
+        $post->fill($data)->save();
+        $data['post_id'] = $post->id;
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $file) {
+                $name = $file->getClientOriginalName();
+                $data['image'] = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+                Image::create($data);
+
+            }
+        }
+
         return redirect(route('account'));
     }
 
@@ -109,4 +123,19 @@ class PostController extends Controller
         $post->delete();
         return redirect(route('account'));
     }
+
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param int $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function imageDestroy(PostRequest $request ,Post $post, Image $image)
+//    {
+////        dd($image);
+////        Image::where('id',$id)->delete();
+////        $image->delete();
+//        $post->fill($request->all())->save();
+//        return redirect(route('account_edit'));
+//    }
 }

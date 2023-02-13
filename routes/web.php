@@ -45,8 +45,8 @@ Route::middleware('auth')->group(callback: function () {
         Route::get('/', [PersonalController::class, 'index'])->name('account') ;
         Route::get('/edit', [PersonalController::class, 'edit'])->name('account_edit');
         Route::put('/update', [PersonalController::class, 'update'])->name('account_update');
+        Route::delete('/posts/{post}/edit/{image}/destroy', [PostController::class, 'imageDestroy'])->name('image_destroy');
         Route::resources([
-
             'posts' => PostController::class,
 //        'diploma' => MainDiplomaController::class,
         ]);

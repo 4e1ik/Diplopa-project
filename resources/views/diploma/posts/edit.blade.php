@@ -16,26 +16,40 @@
 
 {{--@foreach($post as $p)--}}
 {{--    {{ dd($post) }}--}}
-    <form method="post" action="{{ route('posts.update', $post) }} " enctype="multipart/form-data">
-        @method('PUT')
-        @csrf
-        <p>Название</p>
-{{--        {{dd($post)}}--}}
-        <input name="title" type="text" value="{{$post->title}}">
-        <p>Контент</p>
-        <input name="content" type="text" value="{{$post->content}}">
-{{--        <p>rate</p>--}}
-{{--        <input name="post_rate" type="text" value="{{$post->rate}}">--}}
-        <p>Картинки</p>
-{{--        @foreach($post->images as $image)--}}
-        <div class="col-md-12">
-            <input multiple="multiple" name="image" type="file"
-                   class="form-control form-control-line {{$errors->has('image') ? 'is-invalid':''}}" value="">
-        </div>
-            <br>
-{{--        @endforeach--}}
-        <button type="submit">Сохранить</button>
-    </form>
-{{--@endforeach--}}
+<form method="post" action="{{ route('posts.update', $post) }} " enctype="multipart/form-data">
+    @method('PUT')
+    @csrf
+    <p>Название</p>
+    {{--        {{dd($post)}}--}}
+    <input name="title" type="text" value="{{$post->title}}">
+    @error('title')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+    <p>Контент</p>
+    <input name="content" type="text" value="{{$post->content}}">
+    @error('content')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+    <p>Картинки</p>
+    @foreach($images as $image)
+        <img src="{{asset('storage/'.$image->image)  }}" alt="просто">
+        {{--        <form action="{{ route('image_destroy', compact('post','image')) }}" method="post">--}}
+        {{--            @method('DELETE')--}}
+        {{--            @csrf--}}
+        {{--            <button class="btn btn-danger" href="" type="submit">DELETE IMAGE</button>--}}
+        {{--        </form>--}}
+        <br>
+    @endforeach
+    <div class="col-md-12">
+        <input multiple="multiple" name="image[]" type="file"
+               class="form-control form-control-line {{$errors->has('image') ? 'is-invalid':''}}" value="">
+    </div>
+    <br>
+    <button type="submit">Сохранить</button>
+</form>
 </body>
 </html>

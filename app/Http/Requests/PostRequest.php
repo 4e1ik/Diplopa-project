@@ -24,8 +24,23 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:5|max:50',
-            'content' => 'required|max:5000',
+            'title' => 'required|filled|min:5|max:50',
+            'content' => 'required|filled|min:20|max:5000',
+//            'image' => 'image|max:1024', // Не работает валидация картинки!!!
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Поле :attribute обязательно для заполнения!',
+            'content.required' => 'Поле :attribute обязательно для заполнения!',
+            'title.filled' => 'Поле :attribute не должно быть пустым!',
+            'content.filled' => 'Поле :attribute не должно быть пустым!',
+            'title.min' => 'Поле :attribute не должно быть менее :min символов!',
+            'title.max' => 'Поле :attribute не должно быть менее :max символов!',
+            'content.min' => 'Поле :attribute не должно быть менее :min символов!',
+            'content.max' => 'Поле :attribute не должно быть менее :max символов!',
         ];
     }
 }

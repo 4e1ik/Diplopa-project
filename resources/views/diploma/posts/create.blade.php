@@ -38,7 +38,7 @@
     <div class="form-group">
         <label class="col-md-12">Image</label>
         <div class="col-md-12">
-            <input multiple name="image[]" type="file"
+            <input multiple="multiple" name="image[]" type="file"
                    class="form-control form-control-line {{$errors->has('image') ? 'is-invalid':''}}" value="">
         </div>
         @error('image')

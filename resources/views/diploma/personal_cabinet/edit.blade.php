@@ -18,10 +18,25 @@
     @csrf
     <p>Имя</p>
     <input name="name" type="text" value="{{$user->name}}">
+    @error('name')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
     <p>Фамилия</p>
     <input name="surname" type="text" value="{{$user->surname}}">
+    @error('surname')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
     <p>О себе</p>
     <input name="about" type="text" value="{{$user->about}}">
+    @error('about')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
 {{--    <input name="password" type="text" value="{{$user->password}}">--}}
     <button type="submit">Сохранить</button>
 </form>

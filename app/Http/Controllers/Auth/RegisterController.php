@@ -54,7 +54,21 @@ class RegisterController extends Controller
             'name' => ['string','min:3', 'max:50', 'alpha'],
             'nickname' => ['required', 'string','min:3', 'max:50', 'unique:users', 'alpha_dash'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'password' => ['required', 'string', 'max:20', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()],
+            'password' => ['required', 'string', 'max:20', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()], //Как сделать правило для Password::min...
+        ])->setCustomMessages([
+            'name.min' => 'Поле :attribute должно быть не менее :min букв!',
+            'nickname.min' => 'Поле :attribute должно быть не менее :min букв!',
+            'name.max' => 'Поле :attribute должно быть не более :max букв!',
+            'nickname.max' => 'Поле :attribute должно быть не более :max букв!',
+            'email.max' => 'Поле :attribute должно быть не более :max символов!',
+            'password.max' => 'Поле :attribute должно быть не более :max символов!',
+            'name.alpha' => 'Поле :attribute должно состоять только из букв!',
+            'nickname.required' => 'Поле :attribute обязательно для заполнения!',
+            'nickname.unique:users' => 'Упс, такой никнейм уже существует!',
+            'email.unique:users' => 'Упс, такая почта уже существует!',
+            'email.email' => 'Почта введена некорректно!',
+            'email.required' => 'Поле :attribute обязательно для заполнения!',
+            'password.required' => 'Поле :attribute обязательно для заполнения!',
         ]);
     }
 

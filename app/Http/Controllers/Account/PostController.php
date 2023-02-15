@@ -31,7 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('diploma.posts.create');
+        $user = User::find(Auth::id());
+
+        return view('diploma.posts.create', compact('user'));
     }
 
     /**
@@ -82,8 +84,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
 //        dd($image);
+        $user = User::find(Auth::id());
         $images = Image::where('post_id', $post->id)->get();
-        return view('diploma.posts.edit', compact('post', 'images'));
+        return view('diploma.posts.edit', compact('post', 'images', 'user'));
     }
 
     /**

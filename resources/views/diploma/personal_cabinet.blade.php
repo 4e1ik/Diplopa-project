@@ -1,80 +1,72 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Личный кабинет</h1>
-<a href="{{route('home')}}">Главная</a>
-<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{{ route('logout') }}"
-       onclick="event.preventDefault();
-       document.getElementById('logout-form').submit();">
-        {{ __('Выйти') }}
-    </a>
+@extends('layouts.diploma.diploma')
+@section('content')
+    <div class="vendor-page-header">
+        <div class="vendor-profile-img"> </div>
+        <div class="vendor-profile-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 hidden-xs">
+                        <div class="vendor-profile-block">
+                            <div class="vendor-profile"> <img src="images/vendor-logo.jpg" alt="" class="img-responsive"> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="profile-meta mb30">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if($user->name || $user->surname)
+                                        <h1 class="vendor-profile-title">{{$user->name}} {{$user->surname}}</h1>
+                                        <h1 class="vendor-profile-title">{{$user->nickname}}</h1>
+                                    @else
+                                        <h1 class="vendor-profile-title">{{$user->nickname}}</h1>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><span class="meta-address"> <i class="fa fa-book"></i> <span class="address"> {{ $user->about }} </span> </span>
+                                </div>
+                            </div>
+                            <a href="{{ route('account_edit') }}"><button style="margin-top: 10px" type="button" class="btn btn-secondary">Редактировать данные пользователя</button></a>
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-</div>
-{{--@foreach($users as $users)--}}
-<br>
-{{$user->id}}
-<br>
-{{$user->name}}
-<br>
-{{$user->surname}}
-<br>
-{{$user->nickname}}
-{{--    @endforeach--}}
-<br>
-<a href="{{ route('posts.create') }}">Добавить место</a>
-<br>
-{{--{{dd(url(route('personal_cabinet.edit', $user->name)))}}--}}
-{{--<a href="{{route('personal_cabinet.edit', auth()->user()->getAuthIdentifierName())}}">Редактировать данные пользователя</a>--}}
-<a href="{{ route('account_edit') }}">Редактировать данные пользователя</a>
+                        </div>
 
-<table border="1">
-    <caption>Посты пользователя</caption>
-    <tr>
-        <th>id Поста</th>
-        <th>id Пользователя</th>
-        <th>Заголовок</th>
-        <th>Текст</th>
-        <th>Рейтинг поста</th>
-        <th>Картинка</th>
-        <th>Активный</th>
-        <th>Опубликован</th>
-        <th>Отредактирован</th>
-    </tr>
-    @foreach($users as $user)
-{{--        {{ dd($users) }}--}}
-        @foreach($user->posts as $post)
-{{--            {{ dd($post) }}--}}
-{{--            @if($post->active == 1)--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ route('posts.create') }}"><button type="button" class="btn btn-success">Добавить место</button></a>
+
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Текст</th>
+            <th scope="col">Изображения</th>
+            <th scope="col">Рейтинг места</th>
+            <th scope="col">Создан</th>
+            <th scope="col">Отредактирован</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($users as $user)
+            @foreach($user->posts as $post)
                 <tr>
-                    <td>{{$post->id}}</td>
-                    <td>{{$post->user_id}}</td>
-                    <td>{{$post->title}}</td>
+                    <th scope="row">{{$i++}}</th>
+                    <td class="text-align">{{$post->title}}</td>
                     <td>{{$post->content}}</td>
-                    <td>{{$post->post_rate}}</td>
                     <td>
                         @foreach($post->images as $image)
-{{--                            {{dd($image->image)}}--}}
-{{--                            <img src="{{asset('../storage/app/'.$image->image) }}" alt="просто">--}}
                             <img src="{{asset('storage/'.$image->image)  }}" alt="просто">
                             <br>
                         @endforeach
                     </td>
-                    <td>{{$post->active}}</td>
+                    <td>{{$post->post_rate}}</td>
                     <td>{{$post->created_at}}</td>
                     <td>{{$post->updated_at}}</td>
                     <td>
-                        <a class="btn btn-info" href="{{ route('posts.edit', compact('post')) }}">
+                        <a href="{{ route('posts.edit', compact('post')) }}">
                             <button class="btn btn-info">EDIT</button>
                         </a>
                         <form action="{{ route('posts.destroy', compact('post')) }}" method="post">
@@ -84,9 +76,8 @@
                         </form>
                     </td>
                 </tr>
-{{--            @endif--}}
+            @endforeach
         @endforeach
-    @endforeach
-</table>
-</body>
-</html>
+        </tbody>
+    </table>
+@endsection

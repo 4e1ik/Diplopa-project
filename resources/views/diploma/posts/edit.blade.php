@@ -1,55 +1,101 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>EDIT POST</h1>
-{{--{{ collect($post[0])->all()['id'] }}--}}
-{{--{{ dd($post['id'])}}--}}
+@extends('layouts.diploma.diploma')
+@section('content')
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dashboard-page-head">
+                        <div class="page-header">
+                            <h1>{{$user->nickname}} <small>Отредактируй место.</small></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 profile-dashboard">
+                    <div class="row">
+                        <div class="col-md-7 dashboard-form">
+                            <div class="bg-white pinside40 mb30">
+                                <form class="form-horizontal form-material mx-2" method="post"
+                                      action="{{route('posts.update', compact('post'))}}"
+                                      enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                <!-- Form Name -->
+                                    <h2 class="form-title">Изображения</h2>
+                                    <!-- File Button -->
+                                    <div class="form-group">
+                                        @foreach($images as $image)
+                                            <div>
+                                                <img src="{{asset('storage/'.$image->image)  }}" alt="просто">
+                                                <br>
+                                            </div>
+                                        @endforeach
+                                        <div class="col-md-4">
+                                            <div class="photo-upload">
+                                                <img src="images/profile-dashbaord.png" alt="">
+                                            </div>
+                                        </div>
 
-{{--{{ dd($post) }}--}}
+                                        <div class="col-md-8 upload-file">
+                                            <input id="filebutton" name="image[]"
+                                                   class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
+                                                   type="file" multiple="multiple">
+                                        </div>
+                                    </div>
 
-{{--@foreach($post as $p)--}}
-{{--    {{ dd($post) }}--}}
-<form method="post" action="{{ route('posts.update', $post) }} " enctype="multipart/form-data">
-    @method('PUT')
-    @csrf
-    <p>Название</p>
-    {{--        {{dd($post)}}--}}
-    <input name="title" type="text" value="{{$post->title}}">
-    @error('title')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-    @enderror
-    <p>Контент</p>
-    <input name="content" type="text" value="{{$post->content}}">
-    @error('content')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-    @enderror
-    <p>Картинки</p>
-    @foreach($images as $image)
-        <img src="{{asset('storage/'.$image->image)  }}" alt="просто">
-        {{--        <form action="{{ route('image_destroy', compact('post','image')) }}" method="post">--}}
-        {{--            @method('DELETE')--}}
-        {{--            @csrf--}}
-        {{--            <button class="btn btn-danger" href="" type="submit">DELETE IMAGE</button>--}}
-        {{--        </form>--}}
-        <br>
-    @endforeach
-    <div class="col-md-12">
-        <input multiple="multiple" name="image[]" type="file"
-               class="form-control form-control-line {{$errors->has('image') ? 'is-invalid':''}}" value="">
+                                    <!-- Text input-->
+                                    <h2 class="form-title">Информация о месте</h2>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Заголовок<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-8">
+                                            <input id="name" name="title" type="text" placeholder="Заголовок"
+                                                   class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
+{{--                                                   old('title')--}}
+                                                   value="{{$post->title}}">
+                                        </div>
+                                        @error('title')
+                                        <div>{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Описание места<span
+                                                class="required">*</span></label>
+                                        <div class="col-md-8">
+                                            <input id="name" name="content" type="text" placeholder="Описание места"
+                                                   class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
+                                                   value="{{$post->content}}">
+                                        </div>
+                                        @error('content')
+                                        <div>{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>
+                                        <div class="col-md-8">
+                                            <input name="active" type="checkbox" value="1">
+                                            <input name="active" type="hidden" value="0">
+                                        </div>
+                                        @error('active')
+                                        <div>{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="submit"></label>
+                                        <div class="col-md-4">
+                                            <button id="submit" name="submit" class="btn btn-primary">Сохранить изменения</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-    <button type="submit">Сохранить</button>
-</form>
-</body>
-</html>
+@endsection

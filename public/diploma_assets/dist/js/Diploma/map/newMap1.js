@@ -1,7 +1,7 @@
 function init() {
     let map = new ymaps.Map('map-test', {
         center: [53.90418262984444, 27.56376627880859],
-        zoom: 11,
+        zoom: 15,
     });
     $.ajax('/test', {
         type: 'GET',  // http method

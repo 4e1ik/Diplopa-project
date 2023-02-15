@@ -24,8 +24,10 @@ class PersonalController extends Controller
 
         $user = User::find(Auth::id());
         $users = User::where('id', Auth::id())->get();
+        $i = 1;
 
-        return view('diploma.personal_cabinet', compact('user', 'users'));
+
+        return view('diploma.personal_cabinet', compact('user', 'users', 'i'));
     }
 
     /**

@@ -111,14 +111,12 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
                 $name = $file->getClientOriginalName();
-                $data['image'] = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
-//                $a = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
-//                dd($data);
-//                dd(Image::make($data)->resize(400,400, function($constrait){
-//                    $constrait->aspectRatio();
-//                }));
-
-//                dd($a);
+                $path = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+                $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
+                    $constrait->aspectRatio();
+                });
+                $changedImage->save(Storage::path($path));
+                $data['image'] = $path;
                 Image::create($data);
 
             }

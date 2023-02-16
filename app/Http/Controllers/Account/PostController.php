@@ -54,9 +54,41 @@ class PostController extends Controller
         $data['post_id'] = $post->id;
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
+
+//                $filenamewithextension = $file->getClientOriginalName();
+//                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+//                $extension = $file->getClientOriginalExtension();
+//                $filenametostore = $filename.'_'.time().'.'.$extension;
+//                $file->storeAs('public/images', $filenametostore);
+//                $file->storeAs('public/images/newImages', $filenametostore);
+//                $thumbnailpath = public_path('storage/app/public/images/newImages/'.$filenametostore);
+//                $img = \Intervention\Image\Facades\Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+//                    $constraint->aspectRatio();
+//                });
+//                $img->save($thumbnailpath);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 $name = $file->getClientOriginalName();
-                $data['image'] = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+                $path = Storage::putFileAs('images', $file, $name);
+                $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(400,400, function($constrait){
+                    $constrait->aspectRatio();
+                });
+                $changedImage->save();
+                $data['image'] = $path; // Даем путь к этому файлу
 //                dd($data);
+
                 Image::create($data);
             }
         }
@@ -107,6 +139,13 @@ class PostController extends Controller
             foreach ($request->file('image') as $file) {
                 $name = $file->getClientOriginalName();
                 $data['image'] = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+//                $a = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+//                dd($data);
+//                dd(Image::make($data)->resize(400,400, function($constrait){
+//                    $constrait->aspectRatio();
+//                }));
+
+//                dd($a);
                 Image::create($data);
 
             }

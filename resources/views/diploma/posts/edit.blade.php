@@ -55,10 +55,12 @@
                                             <input id="name" name="title" type="text" placeholder="Заголовок"
                                                    class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
 {{--                                                   old('title')--}}
-                                                   value="{{$post->title}}">
+                                                   value="{{$post->title}}" required>
                                         </div>
                                         @error('title')
-                                        <div>{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
@@ -67,11 +69,14 @@
                                         <div class="col-md-8">
                                             <input id="name" name="content" type="text" placeholder="Описание места"
                                                    class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
-                                                   value="{{$post->content}}">
+                                                   value="{{$post->content}}" required>
                                         </div>
                                         @error('content')
-                                        <div>{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
+
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>

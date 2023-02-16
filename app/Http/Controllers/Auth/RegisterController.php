@@ -51,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['string','min:3', 'max:50', 'alpha'],
+//            'name' => ['string','min:3', 'max:50', 'alpha'],
             'nickname' => ['required', 'string','min:3', 'max:50', 'unique:users', 'alpha_dash'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'max:20', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()], //Как сделать правило для Password::min...
@@ -69,6 +69,9 @@ class RegisterController extends Controller
             'email.email' => 'Почта введена некорректно!',
             'email.required' => 'Поле :attribute обязательно для заполнения!',
             'password.required' => 'Поле :attribute обязательно для заполнения!',
+            'nickname.string' => 'Поле :attribute не должно быть пустым!',
+            'email.string' => 'Поле :attribute не должно быть пустым!',
+            'password.string' => 'Поле :attribute не должно быть пустым!',
         ]);
     }
 
@@ -81,7 +84,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+//            'name' => $data['name'],
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

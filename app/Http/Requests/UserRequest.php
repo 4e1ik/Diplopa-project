@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'min:2|max:50|alpha',
-            'surname' => 'min:2|max:50|alpha',
-            'about' => 'min:5|max:5000',
+            'name' => 'max:50',
+            'surname' => 'max:50',
+            'about' => 'max:5000',
         ];
     }
 

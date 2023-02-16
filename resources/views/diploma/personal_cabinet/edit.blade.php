@@ -28,7 +28,7 @@
                                         <label class="col-md-4 control-label" for="name">Имя пользователя</label>
                                         <div class="col-md-8">
                                             <input id="name" name="name" type="text" value="{{$user->name}}"
-                                                   class="form-control input-md" required="">
+                                                   class="form-control input-md">
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                                         <label class="col-md-4 control-label" for="name">Фамилия пользователя</label>
                                         <div class="col-md-8">
                                             <input id="name" name="surname" type="text" value="{{$user->surname}}"
-                                                   class="form-control input-md" required="">
+                                                   class="form-control input-md" >
                                             @error('surname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
                                         <label class="col-md-4 control-label" for="name">О себе</label>
                                         <div class="col-md-8">
                                             <input id="name" name="about" type="text" value="{{$user->about}}"
-                                                   class="form-control input-md" required="">
+                                                   class="form-control input-md" >
                                             @error('about')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

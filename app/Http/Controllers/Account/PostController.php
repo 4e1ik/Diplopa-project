@@ -89,9 +89,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
 //        dd($image);
+        $if = 0;
         $user = User::find(Auth::id());
         $images = Image::where('post_id', $post->id)->get();
-        return view('diploma.posts.edit', compact('post', 'images', 'user'));
+        return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
     }
 
     /**
@@ -105,11 +106,19 @@ class PostController extends Controller
     {
 
         $data = $request->all();
+        if ($data['image']['0']->clientExtension() != 'png'){
+            $if = 1;
+            $user = User::find(Auth::id());
+            $images = Image::where('post_id', $post->id)->get();
+            return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
+        }
+//        dd($data['image']['0']->clientExtension());
         $post->fill($data)->save();
         $data['post_id'] = $post->id;
 
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
+//                dd($file);
                 $name = $file->getClientOriginalName();
                 $path = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
                 $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){

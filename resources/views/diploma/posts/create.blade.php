@@ -64,10 +64,26 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Адрес места<span
+                                                class="required">*</span></label>
+                                        <p>Например: Минск, Жудро, 5</p>
+                                        <div class="col-md-8">
+                                            <input id="name" name="address" type="text" placeholder="Адрес места"
+                                                   class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
+                                                   value="{{old('address')}}" required>
+                                        </div>
+                                        @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>
                                         <div class="col-md-8">
-                                            <input name="active" type="checkbox"
-                                                   class="{{$errors->has('active') ? 'is-invalid':''}}" value="1">
+                                            <input name="active" type="checkbox" value="1">
+                                            <input name="active" type="hidden" value="0">
                                         </div>
                                         @error('active')
                                         <div>{{ $message }}</div>

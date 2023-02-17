@@ -44,6 +44,9 @@
                                                    class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
                                                    type="file" multiple="multiple">
                                         </div>
+                                        @if($if == 1)
+                                            <p style="color: red;">Изображение должно быть формата .png!</p>
+                                            @endif
                                     </div>
 
                                     <!-- Text input-->
@@ -79,6 +82,22 @@
 
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Адрес места<span
+                                                class="required">*</span></label>
+                                        <p>Например: Минск, Жудро, 5</p>
+                                        <div class="col-md-8">
+                                            <input id="name" name="address" type="text" placeholder="Адрес места"
+                                                   class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
+                                                   value="{{$post->address}}" required>
+                                        </div>
+                                        @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>
                                         <div class="col-md-8">
                                             <input name="active" type="checkbox" value="1">
@@ -92,7 +111,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="submit"></label>
                                         <div class="col-md-4">
-                                            <button id="submit" name="submit" class="btn btn-primary">Сохранить изменения</button>
+                                            <button id="submit" name="submit" type="submit" class="btn btn-primary">Сохранить изменения</button>
                                         </div>
                                     </div>
                                 </form>

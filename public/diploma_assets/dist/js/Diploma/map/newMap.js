@@ -1,7 +1,7 @@
 function init() {
     let map = new ymaps.Map('map-test', {
         center: [53.90418262984444, 27.56376627880859],
-        zoom: 15,
+        zoom: 7,
     });
     $.ajax('/test', {
         type: 'GET',  // http method
@@ -9,9 +9,10 @@ function init() {
         success: function (data, status, xhr) {
             data.forEach(function (element) {
                 let placemark = new ymaps.Placemark(element, {}, {
-                    draggable: true
+                    draggable: false
                 })
                 map.geoObjects.add(placemark);
+
                 console.log(element)
             })
         },

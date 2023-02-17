@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign ('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string ('title', '255')->nullable('false');
             $table->text ('content')->nullable('false');
+            $table->text ('address')->nullable('false');
             $table->integer ('post_rate')->unsigned();
             $table->boolean ('active')->default(false);
             $table->timestamps ();

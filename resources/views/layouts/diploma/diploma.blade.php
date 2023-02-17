@@ -164,8 +164,8 @@
 <script src="{{asset('/diploma_assets/dist/js/Diploma/header-sticky.js')}}"></script>
 
 {{--Яндекс карта--}}
-<script src="{{ asset('/diploma_assets/dist/js/Diploma/map/newMap1.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="{{ asset('/diploma_assets/dist/js/Diploma/map/newMap.js') }}"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>--}}
 {{--Яндекс карта--}}
 </body>
 

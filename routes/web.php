@@ -35,14 +35,8 @@ Route::middleware('auth')->group(callback: function () {
 
 
     Route::get('test', function () {
-//        $address = 'Гродно, ул.Фомичёво, д.8';
-        $address = 'Млынок, Молодежная, 6';
-        $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address));
-        $cord = new CordinatsHelper(json_decode($response, 'associative')['response']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos']);
-        return [
-            [53.904156, 27.538637],
-            $cord->getCordinats(),
-        ];
+        $places = new CordinatsHelper();
+        return $places->getCordinats();
     })->withoutMiddleware('auth');
 
     Route::prefix('account')->group(function () {

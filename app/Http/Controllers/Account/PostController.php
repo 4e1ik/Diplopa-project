@@ -106,12 +106,15 @@ class PostController extends Controller
     {
 
         $data = $request->all();
-        if ($data['image']['0']->clientExtension() != 'png'){
-            $if = 1;
-            $user = User::find(Auth::id());
-            $images = Image::where('post_id', $post->id)->get();
-            return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
+        if ($request->hasFile('image')) {
+            if ($data['image']['0']->clientExtension() != 'png'){
+                $if = 1;
+                $user = User::find(Auth::id());
+                $images = Image::where('post_id', $post->id)->get();
+                return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
+            }
         }
+
 //        dd($data['image']['0']->clientExtension());
         $post->fill($data)->save();
         $data['post_id'] = $post->id;

@@ -27,6 +27,7 @@ class PostRequest extends FormRequest
             'title' => 'required|filled|min:5|max:50',
             'content' => 'required|filled|min:20|max:5000',
             'address' => 'required|filled|max:100',
+            'active' => 'required|filled'
 //            'image' => 'image|max:1024', // Не работает валидация картинки!!!
         ];
     }
@@ -45,6 +46,8 @@ class PostRequest extends FormRequest
             'address.max' => 'Поле :attribute не должно быть менее :max символов!',
             'address.filled' => 'Поле :attribute не должно быть пустым!',
             'address.required' => 'Поле :attribute обязательно для заполнения!',
+            'active.filled' => 'Поле :attribute не должно быть пустым!',
+            'active.required' => 'Поле :attribute обязательно для заполнения!',
         ];
     }
 }

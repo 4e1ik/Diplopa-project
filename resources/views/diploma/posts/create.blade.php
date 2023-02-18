@@ -82,8 +82,10 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>
                                         <div class="col-md-8">
-                                            <input name="active" type="checkbox" value="1">
-                                            <input name="active" type="hidden" value="0">
+                                            <input type="radio" name="active" value="1">
+                                            <label>Да</label>
+                                            <input type="radio" name="active" value="0">
+                                            <label>Нет</label>
                                         </div>
                                         @error('active')
                                         <div>{{ $message }}</div>

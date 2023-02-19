@@ -2,9 +2,7 @@
 
 use App\Http\Controllers\Account\PersonalController;
 use App\Http\Controllers\Account\PostController;
-use App\Http\Helpers\CordinatsHelper;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainDiplomaController;
 
@@ -19,25 +17,11 @@ use App\Http\Controllers\MainDiplomaController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-//Route::get('/', [MainController::class, 'index'])->name('home_page');
-//Route::get('/personal_cabinet', [PersonalController::class, 'index'])->name('personal_cabinet_page')->middleware('auth');
-
-//Route::resource('diploma', MainDiplomaController::class)->middleware('auth');
-
 Route::middleware('auth')->group(callback: function () {
 
     Route::get('/', [MainDiplomaController::class, 'index'])->name('home')->withoutMiddleware('auth');
-//    Route::get('map', [MainDiplomaController::class, 'show'])->name('show_cordinats')->withoutMiddleware('auth');
-
-
-    Route::get('test', function () {
-        $places = new CordinatsHelper();
-        return $places->getCordinats();
-    })->withoutMiddleware('auth');
+    Route::get('map', [MainDiplomaController ::class, 'show'])->name('show_cordinats')->withoutMiddleware('auth');
+    Route::get('user_map', [PersonalController::class, 'show'])->name('show_user_cordinats');
 
     Route::prefix('account')->group(function () {
         Route::get('/', [PersonalController::class, 'index'])->name('account');
@@ -52,5 +36,3 @@ Route::middleware('auth')->group(callback: function () {
 });
 
 Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

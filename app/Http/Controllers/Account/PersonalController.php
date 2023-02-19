@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\CordinatsHelper;
 use App\Http\Requests\UserRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,18 +18,23 @@ class PersonalController extends Controller
      */
     public function index()
     {
-//        $address = 'Москва, Тверская, д.7';
-
-       // $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address));
-
-//        $logUser = auth()->user()->getAuthIdentifier();
-
         $user = User::find(Auth::id());
         $users = User::where('id', Auth::id())->get();
         $i = 1;
-
-
         return view('diploma.personal_cabinet', compact('user', 'users', 'i'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        $user_addresses = Post::where('user_id', Auth::id())->where('active', 1)->get();
+        $places = new CordinatsHelper($user_addresses);
+        return $places->getCordinats();
     }
 
     /**

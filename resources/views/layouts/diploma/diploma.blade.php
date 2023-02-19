@@ -54,7 +54,9 @@
         <div class="row">
             <div class="col-md-3 col-sm-12 logo">
                 <div class="navbar-brand">
-                    <a href="{{ route('home') }}"><img src="{{asset('/diploma_assets/dist/images/Diploma/BigLogo.png')}}" alt="Логотип" class="img-responsive" style="height:50px"></a>
+                    <a href="{{ route('home') }}"><img
+                            src="{{asset('/diploma_assets/dist/images/Diploma/BigLogo.png')}}" alt="Логотип"
+                            class="img-responsive" style="height:50px"></a>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
@@ -69,7 +71,7 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
-       document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Выйти') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -164,7 +166,12 @@
 <script src="{{asset('/diploma_assets/dist/js/Diploma/header-sticky.js')}}"></script>
 
 {{--Яндекс карта--}}
-<script src="{{ asset('/diploma_assets/dist/js/Diploma/map/newMap.js') }}"></script>
+@if(\Illuminate\Support\Facades\Route::currentRouteName() == 'account')
+    <script src="{{ asset('/diploma_assets/dist/js/Diploma/map/userMap.js') }}"></script>
+@else
+    <script src="{{ asset('/diploma_assets/dist/js/Diploma/map/allUsersMap.js') }}"></script>
+@endif
+{{--<script src="{{ asset('/diploma_assets/dist/js/Diploma/map/newMap.js') }}"></script>--}}
 {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>--}}
 {{--Яндекс карта--}}
 </body>

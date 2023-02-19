@@ -20,45 +20,6 @@ class MainDiplomaController extends Controller
 
     public function index()
     {
-//        $address = 'Москва, Тверская, д.7';
-//        $address = 'Минск, Жудро, д.6';
-//        $address = 'Гродно, ул.Фомичёво, д.8';
-//        $address = 'Минск, Жудро, д.22';
-//        $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address));
-//        $a = [53.90988484530737, 27.48204069752266];
-//        $cord = new CordinatsHelper($response->collect()->keyBy('response')['']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos']);
-//        $cord = new CordinatsHelper(json_decode($response, 'associative')['response']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos']);
-//        flatten
-//        keyBy
-//        dd($response->collect());
-//        implode(', ',array_reverse(explode(' ', $this->response))
-//        $array = explode(' ', $cord->getCordinats());
-//        dd($array);
-//        $new_arr = [];
-//        foreach ($array as $elem){
-//            $new_arr[]= (float)$elem;
-//        }
-//        $cords = [$new_arr['0'], $new_arr['1']];
-//        dd($cords);
-//        dd(implode(',',array_reverse(explode(' ', $a))));
-
-
-        $addresses = Post::where('active', 1)->get();
-        $good_cord_arr=[];
-        foreach ($addresses as $address){
-            $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address->address));
-            $cord = json_decode($response, 'associative')['response']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos'];
-            $bad_cord_array = explode(' ', $cord);
-            $good_cord_arr[]=array_reverse($bad_cord_array);
-        }
-//        dd($good_cord_arr);
-//        if (\Illuminate\Support\Facades\Route::currentRouteName() == 'account'){
-//            dd(1);
-//        } else {
-//            dd(0);
-//        }
-//        $addresses = Post::where('user_id', Auth::id())->where('active', 1)->get();
-//        dd($addresses);
         return view('diploma.index');
     }
 
@@ -91,11 +52,9 @@ class MainDiplomaController extends Controller
      */
     public function show()
     {
-
-//        $address = 'Гродно, ул.Фомичёво, д.8';
-//        $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address));
-//        $cord = new CordinatsHelper(json_decode($response, 'associative')['response']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos']);
-//        return $cord->getCordinats();
+        $all_user_addresses = Post::where('active', 1)->get();
+        $places = new CordinatsHelper($all_user_addresses);
+        return $places->getCordinats();
     }
 
     /**

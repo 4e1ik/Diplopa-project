@@ -1,9 +1,9 @@
 function init() {
-    let map = new ymaps.Map('map-test', {
+    let map = new ymaps.Map('map', {
         center: [53.90418262984444, 27.56376627880859],
         zoom: 7,
     });
-    $.ajax('/test', {
+    $.ajax('/map', {
         type: 'GET',  // http method
         // data: { myData: 'This is my data.' },  // data to submit
         success: function (data, status, xhr) {
@@ -20,6 +20,8 @@ function init() {
             $('p').append('Error' + errorMessage);
         }
     });
+
+
 // 53.90026025373433,27.566150249553452
 //     let placemark = new ymaps.Placemark([53.90988484530737, 27.48204069752266], {}, {
 //         draggable: true

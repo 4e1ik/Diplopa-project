@@ -39,24 +39,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-8 upload-file">
-                                            <input id="filebutton" name="image[]"
-                                                   class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
-                                                   type="file" multiple="multiple">
-                                        </div>
-{{--                                            @error('image')--}}
-{{--                                            <span class="invalid-feedback" role="alert">--}}
-{{--                                                <strong>{{ $message }}</strong>--}}
-{{--                                            </span>--}}
-{{--                                            @enderror--}}
-
-                                            @if (session('error'))
-                                                <div class="alert alert-danger">{{ session('error') }}</div>
-                                            @endif
-
-{{--                                        @if($if == 1)--}}
-{{--                                            <p style="color: red;">Изображение должно быть формата .png!</p>--}}
-{{--                                            @endif--}}
+                                            <div class="col-md-8 upload-file">
+                                                <input id="filebutton" name="image[]"
+                                                       class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
+                                                       type="file" multiple="multiple">
+                                            </div>
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">{{ session('error') }}</div>
+                                        @endif
                                     </div>
 
                                     <!-- Text input-->
@@ -67,7 +57,6 @@
                                         <div class="col-md-8">
                                             <input id="name" name="title" type="text" placeholder="Заголовок"
                                                    class="form-control input-md {{$errors->has('title') ? 'is-invalid':''}}"
-{{--                                                   old('title')--}}
                                                    value="{{$post->title}}" required>
                                         </div>
                                         @error('title')
@@ -108,11 +97,9 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="name">Показывать место на карте?</label>
+                                        <label class="col-md-4 control-label" for="name">Показывать место на
+                                            карте?</label>
                                         <div class="col-md-8">
-{{--                                            <input name="active" type="checkbox" value="1">--}}
-{{--                                            <input name="active" type="hidden" value="0">--}}
-
                                             <input type="radio" name="active" value="1">
                                             <label>Да</label>
                                             <input type="radio" name="active" value="0">
@@ -124,11 +111,32 @@
                                             </span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Выберите тип места</label>
+                                        <div class="col-md-8">
+                                            <select name="place" id="">
+                                                <option disabled>Выберите тип места</option>
+                                                <option value="1">Парк</option>
+                                                <option value="2">Достопримечательность</option>
+                                                <option value="3">Кафе</option>
+                                                <option value="4">Ресторан</option>
+                                                <option value="5">Музей</option>
+                                                <option value="6">Театр</option>
+                                                <option value="7">Кинотеатр</option>
+                                                <option value="8">Другое</option>
+                                            </select>
+                                        </div>
+                                        @error('place')
+                                        <div>{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <!-- Button -->
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="submit"></label>
                                         <div class="col-md-4">
-                                            <button id="submit" name="submit" type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                            <button id="submit" name="submit" type="submit" class="btn btn-primary">
+                                                Сохранить изменения
+                                            </button>
                                         </div>
                                     </div>
                                 </form>

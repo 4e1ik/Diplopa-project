@@ -30,6 +30,7 @@ class PostRequest extends FormRequest
             'active' => 'required|filled',
             'image' => 'array', // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
             'image.*.[]' => 'mimes:png', // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
+            'place' => 'required|filled', // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
         ];
     }
 
@@ -49,6 +50,8 @@ class PostRequest extends FormRequest
             'address.required' => 'Поле :attribute обязательно для заполнения!',
             'active.filled' => 'Поле :attribute не должно быть пустым!',
             'active.required' => 'Поле :attribute обязательно для заполнения!',
+            'place.filled' => 'Поле :attribute не должно быть пустым!',
+            'place.required' => 'Поле :attribute обязательно для заполнения!',
 //            'image.mime:png' => 'Разрешение загружаемой картинки должно быть .png'
         ];
     }

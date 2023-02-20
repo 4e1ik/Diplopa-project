@@ -36,7 +36,6 @@
                                                    type="file" multiple="multiple">
                                         </div>
                                     </div>
-
                                     <!-- Text input-->
                                     <h2 class="form-title">Информация о месте</h2>
                                     <div class="form-group">
@@ -88,6 +87,25 @@
                                             <label>Нет</label>
                                         </div>
                                         @error('active')
+                                        <div>{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="name">Выберите тип места</label>
+                                        <div class="col-md-8">
+                                            <select name="place" id="">
+                                                <option disabled>Выберите тип места</option>
+                                                <option value="1">Парк</option>
+                                                <option value="2">Достопримечательность</option>
+                                                <option value="3">Кафе</option>
+                                                <option value="4">Ресторан</option>
+                                                <option value="5">Музей</option>
+                                                <option value="6">Театр</option>
+                                                <option value="7">Кинотеатр</option>
+                                                <option value="8">Другое</option>
+                                            </select>
+                                        </div>
+                                        @error('place')
                                         <div>{{ $message }}</div>
                                         @enderror
                                     </div>

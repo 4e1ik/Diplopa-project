@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string ('title', '255')->nullable('false');
             $table->text ('content')->nullable('false');
             $table->text ('address')->nullable('false');
-            $table->integer ('post_rate')->unsigned();
+            $table->integer ('place')->unsigned();
             $table->boolean ('active')->default(false);
             $table->timestamps ();
         });

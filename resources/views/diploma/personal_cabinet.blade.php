@@ -64,7 +64,7 @@
                 <th scope="col">Текст</th>
                 <th scope="col">Изображения</th>
                 <th scope="col">Адрес</th>
-                <th scope="col">Рейтинг места</th>
+                <th scope="col">Тип места</th>
                 <th scope="col">Создан</th>
                 <th scope="col">Отредактирован</th>
             </tr>
@@ -83,7 +83,7 @@
                             @endforeach
                         </td>
                         <td>{{$post->address}}</td>
-                        <td>{{$post->post_rate}}</td>
+                        <td>{{$post->place}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>{{$post->updated_at}}</td>
                         <td>

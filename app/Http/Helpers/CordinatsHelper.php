@@ -39,6 +39,8 @@ class CordinatsHelper
             $good_arr = array_reverse($bad_cord_array);
             $good_arr[] = $address->title;
             $good_arr[] = $address->content;
+            $good_arr[] = $address->address;
+            $good_arr[] = $address->place;
             foreach ($address->images as $image){
                 $img_array[]=$image->image;
             }

@@ -1,19 +1,47 @@
+// function images(data){
+//     data.forEach(function (image){
+//         // return "<img src='storage/'"+image+" alt='просто'>";
+//         return `<img src='storage/${image}' alt='просто'>`;
+//     })
+//     console.log(data);
+//     return data;
+// }
+
+
 function init() {
     let map = new ymaps.Map('map', {
         center: [53.90418262984444, 27.56376627880859],
         zoom: 7,
+    },{
+        searchControlProvider: 'yandex#search'
     });
     $.ajax('/map', {
         type: 'GET',  // http method
         // data: { myData: 'This is my data.' },  // data to submit
         success: function (data, status, xhr) {
             data.forEach(function (element) {
-                let placemark = new ymaps.Placemark(element, {}, {
-                    draggable: false
-                })
+                let placemark = new ymaps.Placemark([element[0],element[1]], {
+                    // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+                    balloonContentHeader: element[2],
+                    // balloonContentBody: "<h1>"+element[3]+"</h1>",
+                    balloonContentBody:
+                        "<div>"+
+                            element[4].map(function (image){
+                                return "<img src='storage/"+image+"' alt='просто'/>";
+                            })+
+                            "<div>" +
+                                element[3]+
+                            "</div>"+
+                        "</div>",
+                    balloonContentFooter: "Подвал",
+                    hintContent: "Хинт метки"
+                }, {
+                    draggable: false,
+                });
                 map.geoObjects.add(placemark);
 
-                console.log(element)
+                // console.log(element)
+                console.log(element[4]);
             })
         },
         error: function (jqXhr, textStatus, errorMessage) {

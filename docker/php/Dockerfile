@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
+RUN apt install libjpeg-dev \
+    && docker-php-ext-configure gd --with-jpeg \
+    && docker-php-ext-install gd
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

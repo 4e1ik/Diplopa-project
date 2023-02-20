@@ -89,10 +89,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
 //        dd($image);
-        $if = 0;
+//        $if = 0;
         $user = User::find(Auth::id());
         $images = Image::where('post_id', $post->id)->get();
-        return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
+//        return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
+        return view('diploma.posts.edit', compact('post', 'images', 'user'));
     }
 
     /**
@@ -106,31 +107,37 @@ class PostController extends Controller
     {
 
         $data = $request->all();
-        if ($request->hasFile('image')) {
-            if ($data['image']['0']->clientExtension() != 'png'){
-                $if = 1;
-                $user = User::find(Auth::id());
-                $images = Image::where('post_id', $post->id)->get();
-                return view('diploma.posts.edit', compact('post', 'images', 'user', 'if'));
-            }
-        }
-
-//        dd($data['image']['0']->clientExtension());
         $post->fill($data)->save();
         $data['post_id'] = $post->id;
 
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
-//                dd($file);
+//                $name = $file->getClientOriginalName();
+//                $path = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
+                dd($file);
                 $name = $file->getClientOriginalName();
                 $path = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
-                $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
-                    $constrait->aspectRatio();
-                });
-                $changedImage->save(Storage::path($path));
+                try {
+                    if ($file->clientExtension() != 'png'){
+                        throw new \Exception('Загруженное изображение некорректного формата. Верный формат: .png. Попробуйте другое изображение');
+                    }
+                    $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
+                        $constrait->aspectRatio();
+                    });
+                    $changedImage->save(Storage::path($path));
+                    $data['image'] = $path;
+                    Image::create($data);
+                } catch (\Exception $exception){
+                    return back()->withError($exception->getMessage())->withInput();
+                }
+
+
+//                $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
+//                    $constrait->aspectRatio();
+//                });
+//                $changedImage->save(Storage::path($path));
                 $data['image'] = $path;
                 Image::create($data);
-
             }
         }
 

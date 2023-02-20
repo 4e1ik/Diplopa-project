@@ -44,9 +44,19 @@
                                                    class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
                                                    type="file" multiple="multiple">
                                         </div>
-                                        @if($if == 1)
-                                            <p style="color: red;">Изображение должно быть формата .png!</p>
+{{--                                            @error('image')--}}
+{{--                                            <span class="invalid-feedback" role="alert">--}}
+{{--                                                <strong>{{ $message }}</strong>--}}
+{{--                                            </span>--}}
+{{--                                            @enderror--}}
+
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">{{ session('error') }}</div>
                                             @endif
+
+{{--                                        @if($if == 1)--}}
+{{--                                            <p style="color: red;">Изображение должно быть формата .png!</p>--}}
+{{--                                            @endif--}}
                                     </div>
 
                                     <!-- Text input-->
@@ -109,7 +119,9 @@
                                             <label>Нет</label>
                                         </div>
                                         @error('active')
-                                        <div>{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <!-- Button -->
@@ -120,6 +132,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                @dump($errors->all())
                             </div>
                         </div>
                     </div>

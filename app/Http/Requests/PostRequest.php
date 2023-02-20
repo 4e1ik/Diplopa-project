@@ -28,7 +28,8 @@ class PostRequest extends FormRequest
             'content' => 'required|filled|min:20|max:5000',
             'address' => 'required|filled|max:100',
             'active' => 'required|filled',
-//            'image' => 'image' // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
+            'image' => 'array', // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
+            'image.*.[]' => 'mimes:png', // Не работает валидация картинки!!! Возможно это связано с тем, что сами картинки находятся в другой таблице...
         ];
     }
 
@@ -48,7 +49,7 @@ class PostRequest extends FormRequest
             'address.required' => 'Поле :attribute обязательно для заполнения!',
             'active.filled' => 'Поле :attribute не должно быть пустым!',
             'active.required' => 'Поле :attribute обязательно для заполнения!',
-            'image.mime:png' => 'Разрешение загружаемой картинки должно быть .png'
+//            'image.mime:png' => 'Разрешение загружаемой картинки должно быть .png'
         ];
     }
 }

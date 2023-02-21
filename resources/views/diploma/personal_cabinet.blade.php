@@ -41,50 +41,8 @@
             </div>
         </div>
     </div>
-
     <div class="row ">
-        <div class="col-md-12">
-            <div class="section-title mb60 text-center">
-                <h1>Интересные и красивые места Беларуси</h1>
-                <p>На этой карте отображены места, где вы побывали лчино и поделились с вами своими впечатлениями.</p>
-                <div class="container" style="display: flex; align-items: center; flex-wrap: wrap; align-content: stretch;">
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: green; display: flex; margin-right: 5px"></div>
-                        <p>Парки</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: blue; display: flex; margin-right: 5px"></div>
-                        <p>Достопримечательность</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: red; display: flex; margin-right: 5px"></div>
-                        <p>Кафе</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: yellow; display: flex; margin-right: 5px"></div>
-                        <p>Ресторан</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: orange; display: flex; margin-right: 5px"></div>
-                        <p>Музей</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: darkviolet; display: flex; margin-right: 5px"></div>
-                        <p>Театр</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: brown; display: flex; margin-right: 5px"></div>
-                        <p>Кинотеатр</p>
-                    </div>
-                    <div style="display: flex; align-content: space-between; align-items: center; width: max-content; margin-right: auto">
-                        <div style="width: 12px; height: 12px; background-color: gray; display: flex; margin-right: 5px"></div>
-                        <p>Другое</p>
-                    </div>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
-                <div id="user-map" class="map-test col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10"></div>
-            </div>
-        </div>
+        @include('diploma.includes.user-map')
 
         <a href="{{ route('posts.create') }}">
             <button type="button" class="btn btn-success">Добавить место</button>

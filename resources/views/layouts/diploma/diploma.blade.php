@@ -1,3 +1,7 @@
+@php
+    $route_name = \Illuminate\Support\Facades\Route::currentRouteName();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +60,7 @@
                 <div class="navbar-brand">
                     <a href="{{ route('home') }}"><img
                             src="{{asset('/diploma_assets/dist/images/Diploma/BigLogo.png')}}" alt="Логотип"
-                            class="img-responsive" style="height:50px"></a>
+                            class="img-rounded" style="height:50px"></a>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
@@ -167,12 +171,12 @@
 
 {{--Яндекс карта--}}
 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'account')
-    <script src="{{ asset('/diploma_assets/dist/js/Diploma/map/userMap.js') }}"></script>
+    <script type="module" src="{{ asset('/diploma_assets/dist/js/Diploma/map/userMap.js') }}"></script>
 @else
-    <script src="{{ asset('/diploma_assets/dist/js/Diploma/map/allUsersMap.js') }}"></script>
+    <script type="module" src="{{ asset('/diploma_assets/dist/js/Diploma/map/allUsersMap.js') }}"></script>
 @endif
 {{--<script src="{{ asset('/diploma_assets/dist/js/Diploma/map/newMap.js') }}"></script>--}}
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 {{--Яндекс карта--}}
 </body>
 

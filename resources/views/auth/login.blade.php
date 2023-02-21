@@ -60,7 +60,7 @@
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            Запомнить меня
                                         </label>
                                     </div>
                                 </div>
@@ -69,12 +69,12 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        Войти
                                     </button>
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            Забыли свой пароль?
                                         </a>
                                     @endif
                                 </div>
@@ -95,17 +95,5 @@
             </div>
         </div>
         <!-- /.page header -->
-        <div class="tp-breadcrumb">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Login Page</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 @endsection

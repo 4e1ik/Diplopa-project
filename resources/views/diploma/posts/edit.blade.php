@@ -3,7 +3,6 @@
     @php
         $route_name = \Illuminate\Support\Facades\Route::currentRouteName();
     @endphp
-    {{$route_name}}
     <div class="main-container">
         <div class="container">
             <div class="row">

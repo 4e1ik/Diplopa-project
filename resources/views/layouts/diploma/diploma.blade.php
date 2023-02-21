@@ -1,7 +1,3 @@
-@php
-    $route_name = \Illuminate\Support\Facades\Route::currentRouteName();
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
 

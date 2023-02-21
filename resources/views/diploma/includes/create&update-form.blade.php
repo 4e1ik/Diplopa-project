@@ -2,9 +2,9 @@
     <form class="form-horizontal form-material mx-2" method="post"
           action="{{$route_name == 'posts.edit' ? route('posts.update', compact('post')) : route('posts.store')}}"
           enctype="multipart/form-data">
-        @if($route_name == 'posts.edit')
-            @method('PUT')
-        @endif
+    @if($route_name == 'posts.edit')
+        @method('PUT')
+    @endif
     @csrf
     <!-- Form Name -->
         <h2 class="form-title">Изображения</h2>
@@ -29,11 +29,11 @@
                        class="input-file {{$errors->has('image') ? 'is-invalid':''}}"
                        type="file" multiple="multiple">
             </div>
-                @if($route_name == 'posts.edit')
-                    @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
-                    @endif
+            @if($route_name == 'posts.edit')
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
+            @endif
         </div>
 
         <!-- Text input-->

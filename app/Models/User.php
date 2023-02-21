@@ -24,11 +24,14 @@ class User extends Authenticatable
         'about',
         'email',
         'password',
-//        'rate',
     ];
 
     public function posts(){
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function avatarImages(){
+        return $this->hasOne(AvatarImage::class, 'user_id', 'id');
     }
 
     /**

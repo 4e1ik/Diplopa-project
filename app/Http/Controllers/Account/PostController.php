@@ -102,10 +102,10 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-
         $data = $request->all();
         $post->fill($data)->save();
         $data['post_id'] = $post->id;
+//        dd($data);
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
                 try {

@@ -7,8 +7,7 @@
                 <div class="row">
                     <div class="col-md-3 hidden-xs">
                         <div class="vendor-profile-block">
-                            <div class="vendor-profile"><img src="images/vendor-logo.jpg" alt="" class="img-responsive">
-                            </div>
+                            <img src="{{asset('storage/'.$avatar->avatar)}}" alt="Аватарка" class="img-rounded">
                         </div>
                     </div>
                     <div class="col-md-8">

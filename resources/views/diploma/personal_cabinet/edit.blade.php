@@ -19,11 +19,35 @@
                         <div class="col-md-12 dashboard-form">
                             <div class="bg-white pinside40 mb30">
 
-                                <form class="form-horizontal" method="post" action="{{ route('account_update') }}">
+                                <form class="form-horizontal" method="post" action="{{ route('account_update') }}" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <!-- Text input-->
                                     <h2 class="form-title">Данные</h2>
+
+                                    <div class="form-group">
+                                        <p>Аватарка пользователя</p>
+                                        @foreach($avatarImages as $image)
+                                            <div>
+                                                <img src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                                <br>
+                                            </div>
+                                        @endforeach
+                                        <div class="col-md-4">
+                                            <div class="photo-upload">
+                                                <img src="images/profile-dashbaord.png" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8 upload-file">
+                                            <input id="filebutton" name="avatar"
+                                                   class="input-file {{$errors->has('avatar') ? 'is-invalid':''}}"
+                                                   type="file">
+                                        </div>
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">{{ session('error') }}</div>
+                                            @endif
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="name">Имя пользователя</label>
                                         <div class="col-md-8">

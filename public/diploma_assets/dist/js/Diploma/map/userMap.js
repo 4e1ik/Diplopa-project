@@ -10,7 +10,7 @@ function place(place){
     } else if (place === 5){
         return 'islands#orangeIcon';
     } else if (place === 6){
-        return 'islands#purpureIcon';
+        return 'islands#violetIcon';
     } else if (place === 7){
         return 'islands#brownIcon';
     } else if (place === 8){
@@ -45,7 +45,7 @@ function init() {
     }, {
         searchControlProvider: 'yandex#search'
     });
-    $.ajax('/map', {
+    $.ajax('/user_map', {
         type: 'GET',  // http method
         // data: { myData: 'This is my data.' },  // data to submit
         success: function (data, status, xhr) {

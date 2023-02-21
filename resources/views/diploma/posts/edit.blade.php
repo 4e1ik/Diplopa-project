@@ -115,7 +115,7 @@
                                         <label class="col-md-4 control-label" for="name">Выберите тип места</label>
                                         <div class="col-md-8">
                                             <select name="place" id="">
-                                                <option disabled>Выберите тип места</option>
+                                                <option selected disabled>Выберите тип места</option>
                                                 <option value="1">Парк</option>
                                                 <option value="2">Достопримечательность</option>
                                                 <option value="3">Кафе</option>
@@ -127,7 +127,9 @@
                                             </select>
                                         </div>
                                         @error('place')
-                                        <div>{{ $message }}</div>
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <!-- Button -->
@@ -140,7 +142,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                @dump($errors->all())
+{{--                                @dump($errors->all())--}}
                             </div>
                         </div>
                     </div>

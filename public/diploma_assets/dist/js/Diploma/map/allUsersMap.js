@@ -10,7 +10,7 @@ function place(place){
     } else if (place === 5){
         return 'islands#orangeIcon';
     } else if (place === 6){
-        return 'islands#purpureIcon';
+        return 'islands#violetIcon';
     } else if (place === 7){
         return 'islands#brownIcon';
     } else if (place === 8){

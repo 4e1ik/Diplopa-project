@@ -2,6 +2,7 @@ import {hintPlace} from "./helpers/hintPlaceHelper.js";
 import {place} from "./helpers/placeHelper.js";
 
 function init() {
+    var myCollection = new ymaps.GeoObjectCollection();
     let map = new ymaps.Map('user-map', {
         center: [53.90418262984444, 27.56376627880859],
         zoom: 7,
@@ -44,12 +45,13 @@ function init() {
                 }, {
                     draggable: false,
                     preset: place(element[5]),
-                })
-                console.log(element[5])
-                map.geoObjects.add(placemark).options.set({
+                });
+                myCollection.add(placemark).options.set({
                     balloonMaxWidth: 450,
                 });
             })
+            map.geoObjects.add( myCollection );
+            map.setBounds(myCollection.getBounds());
         },
         error: function (jqXhr, textStatus, errorMessage) {
             $('p').append('Error' + errorMessage);

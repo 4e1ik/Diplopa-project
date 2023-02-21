@@ -1,50 +1,15 @@
-function place(place){
-    if (place === 1){
-        return 'islands#greedIcon';
-    } else if (place === 2){
-        return 'islands#blueIcon';
-    } else if (place === 3){
-        return 'islands#redIcon';
-    } else if (place === 4){
-        return 'islands#yellowIcon';
-    } else if (place === 5){
-        return 'islands#orangeIcon';
-    } else if (place === 6){
-        return 'islands#violetIcon';
-    } else if (place === 7){
-        return 'islands#brownIcon';
-    } else if (place === 8){
-        return 'islands#grayIcon';
-    }
-}
-
-function hintPlace(place){
-    if (place === 1){
-        return 'Парк'
-    } else if (place === 2){
-        return 'Достопримечательность'
-    } else if (place === 3){
-        return 'Кафе'
-    } else if (place === 4){
-        return 'Ресторан'
-    } else if (place === 5){
-        return 'Музей'
-    } else if (place === 6){
-        return 'Театр'
-    } else if (place === 7){
-        return 'Кинотеатр'
-    } else if (place === 8){
-        return 'Другое'
-    }
-}
+import {hintPlace} from "./helpers/hintPlaceHelper.js";
+import {place} from "./helpers/placeHelper.js";
 
 function init() {
+    var myCollection = new ymaps.GeoObjectCollection();
     let map = new ymaps.Map('map', {
         center: [53.90418262984444, 27.56376627880859],
         zoom: 7,
     }, {
         searchControlProvider: 'yandex#search'
     });
+
     $.ajax('/map', {
         type: 'GET',  // http method
         // data: { myData: 'This is my data.' },  // data to submit
@@ -81,12 +46,13 @@ function init() {
                     }, {
                     draggable: false,
                     preset: place(element[5]),
-                })
-                console.log(element[5])
-                map.geoObjects.add(placemark).options.set({
+                });
+                myCollection.add(placemark).options.set({
                     balloonMaxWidth: 450,
                 });
             })
+            map.geoObjects.add( myCollection );
+            map.setBounds(myCollection.getBounds());
         },
         error: function (jqXhr, textStatus, errorMessage) {
             $('p').append('Error' + errorMessage);

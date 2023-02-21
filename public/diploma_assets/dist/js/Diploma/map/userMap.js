@@ -18,33 +18,33 @@ function init() {
                     // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
                     balloonContentHeader:
                         "<div>" +
-                        "<h2>"+element[2]+"</h2>"+
+                            "<h2>"+element['title']+"</h2>"+
                         "</div>",
                     balloonContentBody:
                         "<div>" +
-                        "<div style='width: 430px'>"+
-                        "<div style='display: flex; flex-direction: row; flex-wrap: wrap'>" +
-                        element[6].map(function (image) {
-                            return "<img class='img-rounded' src='storage/" + image + "' alt='просто'/>";
-                        })+
-                        "</div>"+
-                        "</div>"+
-                        "<div>"+
-                        "<div style='width: 400px;' class=' text-justify'>" +
-                        "<p>"+element[3]+"</p>"+
-                        "</div>" +
-                        "</div>"+
+                            "<div style='width: 430px'>"+
+                                "<div style='display: flex; flex-direction: row; flex-wrap: wrap'>" +
+                                    element['images'].map(function (image) {
+                                        return "<img class='img-rounded' src='storage/" + image + "' alt='просто'/>";
+                                    })+
+                                "</div>"+
+                            "</div>"+
+                            "<div>"+
+                                "<div style='width: 400px;' class=' text-justify'>" +
+                                    "<p>"+element['content']+"</p>"+
+                                "</div>" +
+                            "</div>"+
                         "</div>",
 
                     balloonContentFooter:
                         "<div>"+
-                        "<span>Адрес места: "+element[4]+"</span>"+"<br>"+
-                        "<span>Координаты места: "+element[0]+", "+element[1]+"</span>"+
+                            "<span>Адрес места: "+element['address']+"</span>"+"<br>"+
+                            "<span>Координаты места: "+element[0]+", "+element[1]+"</span>"+
                         "</div>",
-                    hintContent: hintPlace(element[5]),
+                    hintContent: hintPlace(element['place']),
                 }, {
                     draggable: false,
-                    preset: place(element[5]),
+                    preset: place(element['place']),
                 });
                 myCollection.add(placemark).options.set({
                     balloonMaxWidth: 450,

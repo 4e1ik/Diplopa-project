@@ -22,23 +22,23 @@ class MainDiplomaController extends Controller
     {
 //        dd(phpinfo());
 
-//        $good_cord_arr=[];
-//
+        $good_cord_arr=[];
+
 //        $all_user_addresses = Post::where('active', 1)->get();
 //        foreach ($all_user_addresses as $address){
 //            $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address->address));
 //            $cord = json_decode($response, 'associative')['response']['GeoObjectCollection']['featureMember']['0']['GeoObject']['Point']['pos'];
 //            $bad_cord_array = explode(' ', $cord);
 //            $good_arr = array_reverse($bad_cord_array);
-//            $good_arr[]=$address->title;
-//            $good_arr[]=$address->content;
-//            $good_arr[]=$address->address;
+//            $good_arr['title']=$address->title;
+//            $good_arr['content']=$address->content;
+//            $good_arr['address']=$address->address;
 //            $img_array=[];
-//            $good_arr[]=$address->place;
+//            $good_arr['place']=$address->place;
 //            foreach ($address->images as $image){
 //                $img_array[]=$image->image;
 //            }
-//            $good_arr[]=$img_array;
+//            $good_arr['images']=$img_array;
 //            $good_cord_arr[]=$good_arr;
 //        }
 //
@@ -76,8 +76,8 @@ class MainDiplomaController extends Controller
      */
     public function show()
     {
-        $all_user_addresses = Post::where('active', 1)->get();
-        $places = new CordinatsHelper($all_user_addresses);
+        $all_user_places = Post::where('active', 1)->get();
+        $places = new CordinatsHelper($all_user_places);
         return $places->getCordinats();
     }
 

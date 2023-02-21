@@ -32,8 +32,8 @@ class PersonalController extends Controller
      */
     public function show()
     {
-        $user_addresses = Post::where('user_id', Auth::id())->where('active', 1)->get();
-        $places = new CordinatsHelper($user_addresses);
+        $user_places = Post::where('user_id', Auth::id())->where('active', 1)->get();
+        $places = new CordinatsHelper($user_places);
         return $places->getCordinats();
     }
 

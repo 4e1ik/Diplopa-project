@@ -10,7 +10,7 @@
                             <div class="vendor-profile-block">
                                 @foreach($avatarImages as $image)
                                     <div>
-                                        <img src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                        <img class="img-rounded" src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
                                         <br>
                                     </div>
                                 @endforeach
@@ -68,7 +68,7 @@
                                         <p>Аватарка пользователя</p>
                                         @foreach($avatarImages as $image)
                                             <div>
-                                                <img src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                                <img class="img-rounded" src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
                                                 <br>
                                             </div>
                                         @endforeach

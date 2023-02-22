@@ -22,9 +22,10 @@ class PersonalController extends Controller
     {
         $user = User::find(Auth::id());
         $users = User::where('id', Auth::id())->get();
-        $avatar = AvatarImage::query()->find(Auth::id());
+        $avatars = AvatarImage::query()->where('user_id', Auth::id())->get();
+//        dd($avatar);
         $i = 1;
-        return view('diploma.personal_cabinet', compact('user', 'users', 'i', 'avatar'));
+        return view('diploma.personal_cabinet', compact('user', 'users', 'i', 'avatars'));
     }
 
     /**
@@ -43,7 +44,7 @@ class PersonalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -56,8 +57,8 @@ class PersonalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request)
@@ -67,27 +68,26 @@ class PersonalController extends Controller
 //        return redirect(route('account'));
 
         $user = User::find(Auth::id());
-        $avatar = AvatarImage::query()->find(Auth::id());
         $data = $request->all();
         $user->fill($data)->save();
         $data['user_id'] = $user->id;
         if ($request->hasFile('avatar')) {
-                try {
-                    $file = $request->file('avatar');
-                    $name = $file->getClientOriginalName();
-                    $path = Storage::putFileAs('images/avatar', $file, $name); // Даем путь к этому файлу
-                    if ($file->clientExtension() != 'png'){
-                        throw new \Exception('Загруженное изображение некорректного формата. Верный формат: .png. Попробуйте другое изображение.Можно конвертировать ');
-                    }
-                    $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
-                        $constrait->aspectRatio();
-                    });
-                    $changedImage->save(Storage::path($path));
-                    $data['avatar'] = $path;
-                    $avatar->fill($data)->save();
-                } catch (\Exception $exception){
-                    return back()->withError($exception->getMessage())->withInput();
+            try {
+                $file = $request->file('avatar');
+                $name = $file->getClientOriginalName();
+                $path = Storage::putFileAs('images/avatar', $file, $name); // Даем путь к этому файлу
+                if ($file->clientExtension() != 'png') {
+                    throw new \Exception('Загруженное изображение некорректного формата. Верный формат: .png. Попробуйте другое изображение.Можно конвертировать ');
                 }
+                $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200, 200, function ($constrait) {
+                    $constrait->aspectRatio();
+                });
+                $changedImage->save(Storage::path($path));
+                $data['avatar'] = $path;
+                AvatarImage::query()->updateOrCreate(['user_id' => $data['user_id']], $data);
+            } catch (\Exception $exception) {
+                return back()->withError($exception->getMessage())->withInput();
+            }
         }
         return redirect(route('account'));
     }

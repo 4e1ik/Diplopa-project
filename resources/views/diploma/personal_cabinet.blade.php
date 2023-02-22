@@ -7,7 +7,14 @@
                 <div class="row">
                     <div class="col-md-3 hidden-xs">
                         <div class="vendor-profile-block">
-                            <img src="{{asset('storage/'.$avatar->avatar)}}" alt="Аватарка" class="img-rounded">
+                            @if($avatars != null)
+                                @foreach($avatars as $image)
+                                    <div>
+                                        <img class="img-rounded" src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                        <br>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-8">

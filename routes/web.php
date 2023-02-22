@@ -17,10 +17,10 @@ use App\Http\Controllers\MainDiplomaController;
 |
 */
 
-Route::middleware('auth')->group(callback: function () {
+Route::middleware('auth')->middleware('verified')->group(callback: function () {
 
-    Route::get('/', [MainDiplomaController::class, 'index'])->name('home')->withoutMiddleware('auth');
-    Route::get('map', [MainDiplomaController ::class, 'show'])->name('show_cordinats')->withoutMiddleware('auth');
+    Route::get('/', [MainDiplomaController::class, 'index'])->name('home')->withoutMiddleware('auth')->withoutMiddleware('verified');
+    Route::get('map', [MainDiplomaController ::class, 'show'])->name('show_cordinats')->withoutMiddleware('auth')->withoutMiddleware('verified');
     Route::get('user_map', [PersonalController::class, 'show'])->name('show_user_cordinats');
 
     Route::prefix('account')->group(function () {
@@ -35,4 +35,4 @@ Route::middleware('auth')->group(callback: function () {
 
 });
 
-Auth::routes();
+Auth::routes(['verify' => 'true']);

@@ -22,8 +22,8 @@ class MainDiplomaController extends Controller
     {
 //        dd(phpinfo());
 
-        $good_cord_arr=[];
-
+//        $good_cord_arr=[];
+//
 //        $all_user_addresses = Post::where('active', 1)->get();
 //        foreach ($all_user_addresses as $address){
 //            $response = Http::get('https://geocode-maps.yandex.ru/1.x/?apikey=c12c269b-9fc8-41b7-871a-8864673cb03e&format=json&geocode=' . urlencode($address->address));

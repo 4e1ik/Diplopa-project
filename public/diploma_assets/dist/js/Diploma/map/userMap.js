@@ -48,7 +48,9 @@ function init() {
                 myCollection.add(placemark).options.set({
                     balloonMaxWidth: 450,
                 });
+                console.log(place(element['place'])[0])
             })
+
             map.geoObjects.add( myCollection );
             map.setBounds(myCollection.getBounds());
         },

@@ -98,41 +98,18 @@
     <!-- Footer -->
     <div class="container">
         <div class="row">
-            <div class="col-md-5 ft-aboutus">
-                <h2>Wedding.Vendor</h2>
-                <p>At Wedding Vendor our purpose is to help people find great online network connecting wedding
-                    suppliers and wedding couples who use those suppliers. <a href="#">Start Find Vendor!</a></p>
-                <a href="#" class="btn btn-default">Find a Vendor</a></div>
-            <div class="col-md-3 ft-link">
-                <h2>Useful links</h2>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                </ul>
+            <div class="col-md-4 ft-aboutus">
+                <h2>Travel In Belarus</h2>
+                <p>Этот сервис позволит вам вести учет мест, где вы побывали и делиться вашими впечатлениями от их посещения
+                    с другими пользователями! <a href="{{ route('posts.create') }}">Добавить место!</a></p>
             </div>
+            <div class="col-md-4"></div>
             <div class="col-md-4 newsletter">
-                <h2>Subscribe for Newsletter</h2>
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter E-Mail Address" required>
-                        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Submit</button>
-            </span></div>
-                    <!-- /input-group -->
-                    <!-- /.col-lg-6 -->
-                </form>
-                <div class="social-icon">
-                    <h2>Be Social &amp; Stay Connected</h2>
+                <div style="margin-top: 0px" class="social-icon">
+                    <h2>Связаться с разработчиком</h2>
                     <ul>
-                        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+                        <li><a href="https://www.instagram.com/4e1ovek.by"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://vk.com/4e1ovek_by"><i class="fa fa-vk"></i></a></li>
                     </ul>
                 </div>
             </div>

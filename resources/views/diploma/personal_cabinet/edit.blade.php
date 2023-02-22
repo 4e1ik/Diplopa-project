@@ -40,17 +40,6 @@
                 </div>
             </div>
         </div>
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12">--}}
-{{--                    <div class="dashboard-page-head">--}}
-{{--                        <div class="page-header">--}}
-{{--                            <h1>{{$user->nickname}} <small>редактируй и изменяй свой профиль</small></h1>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
         <div class="container">
             <div class="row">
                 <div class="col-md-12 profile-dashboard">

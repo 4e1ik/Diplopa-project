@@ -39,6 +39,9 @@
                                     данные пользователя
                                 </button>
                             </a>
+                            <a href="{{ route('posts.create') }}">
+                                <button type="button" class="btn btn-success">Добавить место</button>
+                            </a>
                         </div>
 
                     </div>
@@ -48,9 +51,7 @@
     </div>
     <div class="row ">
         @include('diploma.includes.user-map')
-        <a href="{{ route('posts.create') }}">
-            <button type="button" class="btn btn-success">Добавить место</button>
-        </a>
+
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -81,17 +82,17 @@
                                 @endforeach
                             </td>
                             <td>{{$post->address}}</td>
-                            <td>{{$post->place}}</td>
+                            <td>@include('diploma.includes.places')</td>
                             <td>{{$post->created_at}}</td>
                             <td>{{$post->updated_at}}</td>
                             <td>
                                 <a href="{{ route('posts.edit', compact('post')) }}">
-                                    <button class="btn btn-info">EDIT</button>
+                                    <button class="btn btn-info">ИЗМЕНИТЬ</button>
                                 </a>
                                 <form action="{{ route('posts.destroy', compact('post')) }}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger" href="" type="submit">DELETE</button>
+                                    <button class="btn btn-danger" href="" type="submit">УДАЛИТЬ</button>
                                 </form>
                             </td>
                         </tr>

@@ -1,4 +1,3 @@
-import {hintPlace} from "./helpers/hintPlaceHelper.js";
 import {place} from "./helpers/placeHelper.js";
 
 function init() {
@@ -42,10 +41,10 @@ function init() {
                             "<span>Адрес места: "+element['address']+"</span>"+"<br>"+
                             "<span>Координаты места: "+element[0]+", "+element[1]+"</span>"+
                         "</div>",
-                    hintContent: hintPlace(element['place']),
+                    hintContent: place(element['place'])[1],
                     }, {
                     draggable: false,
-                    preset: place(element['place']),
+                    preset: place(element['place'])[0],
                 });
                 myCollection.add(placemark).options.set({
                     balloonMaxWidth: 450,

@@ -1,29 +1,68 @@
 @extends('layouts.diploma.diploma')
 @section('content')
     <div class="main-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="dashboard-page-head">
-                        <div class="page-header">
-                            <h1>{{$user->nickname}} <small>редактируй и изменяй свой профиль</small></h1>
+        <div class="vendor-page-header">
+            <div class="vendor-profile-img"></div>
+            <div class="vendor-profile-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 hidden-xs">
+                            <div class="vendor-profile-block">
+                                @foreach($avatarImages as $image)
+                                    <div>
+                                        <img src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                        <br>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="profile-meta mb30">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if($user->name || $user->surname)
+                                            <h1 class="vendor-profile-title">{{$user->name}} {{$user->surname}}</h1>
+                                            <h1 class="vendor-profile-title">{{$user->nickname}}</h1>
+                                        @else
+                                            <h1 class="vendor-profile-title">{{$user->nickname}}</h1>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8"><span class="meta-address"> <i class="fa fa-book"></i> <span
+                                                class="address"> {{ $user->about }} </span> </span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="dashboard-page-head">--}}
+{{--                        <div class="page-header">--}}
+{{--                            <h1>{{$user->nickname}} <small>редактируй и изменяй свой профиль</small></h1>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="container">
             <div class="row">
                 <div class="col-md-12 profile-dashboard">
                     <div class="row">
                         <div class="col-md-12 dashboard-form">
-                            <div class="bg-white pinside40 mb30">
+                            <div class="bg-white pinside20 mb30">
 
                                 <form class="form-horizontal" method="post" action="{{ route('account_update') }}" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <!-- Text input-->
-                                    <h2 class="form-title">Данные</h2>
+                                    <h2 class="form-title">Редактировать данные</h2>
 
                                     <div class="form-group">
                                         <p>Аватарка пользователя</p>
@@ -33,11 +72,11 @@
                                                 <br>
                                             </div>
                                         @endforeach
-                                        <div class="col-md-4">
-                                            <div class="photo-upload">
-                                                <img src="images/profile-dashbaord.png" alt="">
-                                            </div>
-                                        </div>
+{{--                                        <div class="col-md-4">--}}
+{{--                                            <div class="photo-upload">--}}
+{{--                                                <img src="images/profile-dashbaord.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
                                         <div class="col-md-8 upload-file">
                                             <input id="filebutton" name="avatar"
@@ -45,7 +84,7 @@
                                                    type="file">
                                         </div>
                                             @if (session('error'))
-                                                <div class="alert alert-danger">{{ session('error') }}</div>
+                                                <div class="alert alert-danger">{{ session('error')}}<a target="_blank" class="alert-link" href="https://image.online-convert.com/ru/convert-to-png"> тут.</a></div>
                                             @endif
                                     </div>
                                     <div class="form-group">

@@ -30,9 +30,9 @@
                        type="file" multiple="multiple">
             </div>
             @if($route_name == 'posts.edit')
-                @if (session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error')}}<a target="_blank" class="alert-link" href="https://image.online-convert.com/ru/convert-to-png"> тут.</a></div>
+                    @endif
             @endif
         </div>
 

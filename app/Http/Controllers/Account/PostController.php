@@ -112,7 +112,7 @@ class PostController extends Controller
                     $name = $file->getClientOriginalName();
                     $path = Storage::putFileAs('images', $file, $name); // Даем путь к этому файлу
                     if ($file->clientExtension() != 'png'){
-                        throw new \Exception('Загруженное изображение некорректного формата. Верный формат: .png. Попробуйте другое изображение');
+                        throw new \Exception('Загруженное изображение некорректного формата. Верный формат: .png. Попробуйте другое изображение.Можно конвертировать ');
                     }
                     $changedImage = \Intervention\Image\Facades\Image::make($file)->resize(200,200, function($constrait){
                         $constrait->aspectRatio();

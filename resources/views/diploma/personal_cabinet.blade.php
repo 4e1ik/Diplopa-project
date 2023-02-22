@@ -23,16 +23,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4"><span class="meta-address"> <i class="fa fa-book"></i> <span
+                                <div class="col-md-8"><span class="meta-address"> <i class="fa fa-book"></i> <span
                                             class="address"> {{ $user->about }} </span> </span>
                                 </div>
                             </div>
                             <a href="{{ route('account_edit') }}">
-                                <button style="margin-top: 10px" type="button" class="btn btn-secondary">Редактировать
+                                <button style="margin: 10px 0px 10px 0px" type="button" class="btn btn-secondary">Редактировать
                                     данные пользователя
                                 </button>
                             </a>
-
                         </div>
 
                     </div>

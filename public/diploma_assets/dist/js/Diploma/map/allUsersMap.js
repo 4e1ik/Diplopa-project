@@ -2,6 +2,28 @@ import {place} from "./helpers/placeHelper.js";
 
 function init() {
     var myCollection = new ymaps.GeoObjectCollection();
+
+    var clusterer = new ymaps.Clusterer({
+        /**
+         * Через кластеризатор можно указать только стили кластеров,
+         * стили для меток нужно назначать каждой метке отдельно.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
+         */
+        preset: 'islands#invertedVioletClusterIcons',
+        /**
+         * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
+         */
+        groupByCoordinates: false,
+        /**
+         * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
+         */
+        clusterDisableClickZoom: true,
+        clusterHideIconOnBalloonOpen: false,
+        geoObjectHideIconOnBalloonOpen: false,
+        gridSize: 80,
+    });
+
     let map = new ymaps.Map('map', {
         center: [53.90418262984444, 27.56376627880859],
         zoom: 7,
@@ -46,12 +68,21 @@ function init() {
                     draggable: false,
                     preset: place(element['place'])[0],
                 });
-                myCollection.add(placemark).options.set({
+                // myCollection.add(placemark).options.set({
+                //     balloonMaxWidth: 450,
+                // });
+
+                clusterer.add(placemark).options.set({
                     balloonMaxWidth: 450,
                 });
             })
-            map.geoObjects.add( myCollection );
-            map.setBounds(myCollection.getBounds());
+            // map.geoObjects.add( myCollection );
+            // map.setBounds(myCollection.getBounds());
+
+            map.geoObjects.add(clusterer);
+            map.setBounds(clusterer.getBounds(),{
+                checkZoomRange: true
+            });
         },
         error: function (jqXhr, textStatus, errorMessage) {
             $('p').append('Error' + errorMessage);

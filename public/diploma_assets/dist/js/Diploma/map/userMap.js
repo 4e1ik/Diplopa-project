@@ -12,7 +12,7 @@ function init() {
         /**
          * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
          */
-        groupByCoordinates: true,
+        groupByCoordinates: false,
         /**
          * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
          * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml

@@ -36,9 +36,9 @@ class SavePostImagesHelper
             $first = Image::query()->where('post_id', $this->data['post_id'])->min('updated_at');
             if (Image::query()->where('post_id', $this->data['post_id'])->count() >= 4){
                 Image::query()->where('post_id', $this->data['post_id'])->where('updated_at', $first)->limit(1)->delete();
-                return Image::create($this->data)->lazy();
+                return Image::create($this->data);
             } else {
-                return Image::create($this->data)->lazy();
+                return Image::create($this->data);
             }
         } catch (\Exception $exception){
             return back()->withError($exception->getMessage())->withInput();

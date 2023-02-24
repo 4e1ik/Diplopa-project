@@ -23,7 +23,6 @@ class PersonalController extends Controller
         $user = User::find(Auth::id());
         $users = User::where('id', Auth::id())->get();
         $avatars = AvatarImage::query()->where('user_id', Auth::id())->get();
-//        dd($avatar);
         $i = 1;
         return view('diploma.personal_cabinet', compact('user', 'users', 'i', 'avatars'));
     }

@@ -1,6 +1,6 @@
 export function place(place) {
     if (place === 1) {
-        return ['islands#greedIcon', 'Парк'];
+        return ['islands#greenIcon', 'Парк'];
     } else if (place === 2) {
         return ['islands#blueIcon', 'Достопримечательность'];
     } else if (place === 3) {

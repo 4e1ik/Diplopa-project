@@ -10,7 +10,8 @@
                             @if($avatars != null)
                                 @foreach($avatars as $image)
                                     <div>
-                                        <img class="img-rounded" src="{{asset('storage/'.$image->avatar)  }}" alt="просто">
+                                        <img class="img-rounded" src="{{asset('storage/'.$image->avatar)  }}"
+                                             alt="просто">
                                         <br>
                                     </div>
                                 @endforeach
@@ -35,7 +36,8 @@
                                 </div>
                             </div>
                             <a href="{{ route('account_edit') }}">
-                                <button style="margin: 10px 0px 10px 0px" type="button" class="btn btn-secondary">Редактировать
+                                <button style="margin: 10px 0px 10px 0px" type="button" class="btn btn-secondary">
+                                    Редактировать
                                     данные пользователя
                                 </button>
                             </a>
@@ -64,8 +66,7 @@
                     <th scope="col">Изображения</th>
                     <th scope="col">Адрес</th>
                     <th scope="col">Тип места</th>
-                    <th scope="col">Создан</th>
-                    <th scope="col">Отредактирован</th>
+                    <th scope="col">Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -83,8 +84,6 @@
                             </td>
                             <td>{{$post->address}}</td>
                             <td>@include('diploma.includes.places')</td>
-                            <td>{{$post->created_at}}</td>
-                            <td>{{$post->updated_at}}</td>
                             <td>
                                 <a href="{{ route('posts.edit', compact('post')) }}">
                                     <button class="btn btn-info">ИЗМЕНИТЬ</button>
@@ -102,5 +101,4 @@
             </table>
         </div>
     </div>
-
 @endsection

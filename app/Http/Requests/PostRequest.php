@@ -25,11 +25,10 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|filled|min:5|max:50',
-            'content' => 'required|filled|min:20|max:5000',
+            'content' => 'required|filled|min:10|max:1000',
             'address' => 'required|filled|max:100',
             'active' => 'required|filled',
             'image' => 'array|max:4',
-//            'image.*.image' => 'mimes:png',
             'place' => 'required|filled',
         ];
     }

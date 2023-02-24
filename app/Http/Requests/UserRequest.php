@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:50',
-            'surname' => 'max:50',
-            'about' => 'max:5000',
+            'name' => 'max:50|alpha|nullable',
+            'surname' => 'max:50|alpha|nullable',
+            'about' => 'max:500|nullable',
         ];
     }
 
@@ -38,6 +38,7 @@ class UserRequest extends FormRequest
             'surname.min' => 'Поле :attribute не должно быть менее :min символов!',
             'surname.alpha' => 'Поле :attribute должно состоять только из букв!',
             'about.min' => 'Поле :attribute не должно быть менее :min символов!',
+//            'about.alpha_dash' => 'Поле :attribute должно может содержать только буквенно-цифровые символы, а также дефисы и подчеркивания!',
             'name.max' => 'Поле :attribute не должно быть менее :max символов!',
             'surname.max' => 'Поле :attribute не должно быть менее :max символов!',
             'about.max' => 'Поле :attribute не должно быть менее :max символов!',

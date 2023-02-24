@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Jobs\AddPlaceJob;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
@@ -44,11 +45,11 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = $request->all();
+
         $data['user_id'] = Auth::id();
         $data['post_rate'] = 1;
         $post = Post::create($data);
         $data['post_id'] = $post->id;
-
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
                 $saveImage = new SavePostImagesHelper($file, $data);

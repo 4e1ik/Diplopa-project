@@ -108,8 +108,10 @@
                 <div style="margin-top: 0px" class="social-icon">
                     <h2>Связаться с разработчиком</h2>
                     <ul>
-                        <li><a href="https://www.instagram.com/4e1ovek.by"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://vk.com/4e1ovek_by"><i class="fa fa-vk"></i></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/4e1ovek.by"><i class="fa fa-instagram"></i></a></li>
+                        <li><a target="_blank" href="https://vk.com/4e1ovek_by"><i class="fa fa-vk"></i></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/artemi-sevostian-57b244225/"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a target="_blank" href="https://github.com/4e1ik"><i class="fa fa-github"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -121,7 +123,7 @@
     <!-- Tiny footer -->
     <div class="container">
         <div class="row">
-            <div class="col-md-12">Разработано © 2022. Артемий Севостьян</div>
+            <div class="col-md-12">Разработано © 2022. <a target="_blank" style="opacity: 0.5" href="https://www.linkedin.com/in/artemi-sevostian-57b244225/">Артемий Севостьян</a></div>
         </div>
     </div>
 </div>

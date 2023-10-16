@@ -102,9 +102,6 @@ class PostController extends Controller
                 $saveImage->saveImage();
             }
         }
-
-
-
         return redirect(route('account'));
     }
 

@@ -33,4 +33,4 @@ Route::middleware('auth')->middleware('verified')->group(callback: function () {
     });
 });
 
-Auth::routes(['verify' => 'true']);
+Auth::routes(['verify' => 'false']);
